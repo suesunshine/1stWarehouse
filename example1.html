@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html >
+<head lang="en">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0,user-scalable=no"/>
+    <meta name="format-detection" content="telephone=no">
+    <title></title>
+</head>
+<style>
+  body {
+    padding: 20px;
+}
+h4 {
+    padding: 10px;
+    background: white;
+}
+.checkbox label {
+    display: block;
+}
+form {
+    margin-bottom: 20px;
+}
+img {
+    margin-top: 20px;
+    width: 200px;
+}
+.item-entry {
+  padding: 10px;
+  background: #EDEDED;
+  display: table;
+  width: 100%;
+}
+.item-entry + a {
+  float: right;
+  margin-top: 5px;
+  cursor: pointer;
+}
+</style>
+<body>
+
+    <div class="content">
+       <form role="form" class="form-horizontal" way-data="formData" way-persistent="true">
+         name:<input type="text" class="form-control" name="name" placeholder="Name" autocomplete="off">
+         <br>
+         <br>
+         picture:<input type="text" class="form-control" name="picture" placeholder="Enter an image's URL" autocomplete="off">
+          <img class="img-responsive" way-data="formData.picture" way-default="aa.jpg">
+       <br><br>
+        <label class="col-sm-3">Nationality</label>
+         <div class="col-sm-9 checkbox">
+              <label>
+                <input type="checkbox" name="nationality[]" value="french">French<br/>
+              </label>
+              <label>
+                <input type="checkbox" name="nationality[]" value="american">American<br/>
+              </label>
+              <label>
+                <input type="checkbox" name="nationality[]" value="british">British<br/>
+              </label>
+              <label>
+                <input type="checkbox" name="nationality[]" value="chinese">Chinese<br/>
+              </label>
+            </div>
+
+            <div class="form-group">
+              <label class="col-sm-3">Skills</label>
+              <div class="col-sm-9">
+                <a href="#" way-action-push="formData.skills">Add a skill</a>
+              </div>
+          </div>
+          <div class="form-group" way-repeat="formData.skills" style="padding: 0px;">
+              <label class="col-sm-3"></label>
+              <div class="col-sm-9">
+                <div class="item-entry">
+                  <input type="text" class="form-control" 
+              placeholder="Enter a skill" way-data="title" way-persistent="true">
+                </div>
+                  <a href="#" way-action-remove="formData.skills.$$key" way-persistent="true">Remove</a>
+            </div>
+       </form> 
+    </div>
+
+      <div class="col-sm-6">
+        <h4>way data</h4>
+        <pre way-data="__all__" way-json="true" way-default="{}"></pre>
+        <button class="btn btn-danger" way-clear way-persistent="true">Clear data</button>
+      </div> 
+</body>
+<script src="zepto.20140520.js"></script>
+<script src="way.js"></script>
+<script src="way.min.js"></script>
+</html>
